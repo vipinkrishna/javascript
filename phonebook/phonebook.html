@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Phone Book</title>
+</head>
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+    }
+    .display {
+        width: 300px;
+        height: 300px;
+        background: #ddd;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    .btn {
+        text-align: center;
+    }
+
+    button:focus {
+        outline: 0;
+    }
+
+    .list {
+        list-style-type: none;
+        height: 175px;
+        border: 1px solid white;
+        padding: 5px;
+        overflow: auto;
+        color: #555;
+    }
+
+    h2 {
+        text-align: center;
+        color: #555;
+    }
+</style>
+
+<body>
+    <div class='display'>
+        <h2>PHONE BOOK</h2>
+        <ul class='list' id="output"></ul>
+        <div class='btn'>
+            <button id="first">FIRST</button>
+            <button id="previous">PREV</button>
+            <button id="next">NEXT</button>
+            <button id="last">LAST</button>
+        </div>
+    </div>
+
+    <script src="./phonebook.js"></script>
+</body>
+
+</html>
