@@ -98,3 +98,18 @@ function last() {
     }
 }
 
+var btnaddnew = document.getElementById('addnew');
+btnaddnew.addEventListener('click', addnew);
+function addnew() {
+    var name = document.getElementById('name').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    if (!name)
+        return document.getElementById('name').select();
+    if (!phone)
+        return document.getElementById('phone').select();
+    phonebook.push({ name, phone });
+    document.getElementById('name').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('name').select();
+    display();
+}
