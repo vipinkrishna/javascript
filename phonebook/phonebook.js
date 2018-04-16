@@ -40,15 +40,27 @@ function display() {
         end = page * showcount;
 
     for (i = position; i < end; i++) {
-        output.innerHTML += `<li><strong>${phonebook[i].name}</strong> - ${phonebook[i].phone}</li>`;
+        output.innerHTML += `<li>${phonebook[i].name} - ${phonebook[i].phone} <span class='del' key=${i}>x</span></li>`;
     }
+    var list = document.getElementsByClassName('del');
+    Array.from(list).forEach((deletebtn) => deletebtn.addEventListener('click', deleteitem));
 }
 
+
+function deleteitem(e) {
+    var index = e.target.attributes.key.value;
+    phonebook.splice(index, 1);
+    if (position === phonebook.length && position > 0) {
+        page--;
+        position = position - showcount;
+    }
+    display();
+}
 
 var btnnext = document.getElementById('next');
 btnnext.addEventListener('click', next);
 function next() {
-    if (page * showcount <= phonebook.length) {
+    if (page * showcount < phonebook.length) {
         page++;
         position = position + showcount;
         display();
@@ -79,7 +91,10 @@ function first() {
 var btnlast = document.getElementById('last');
 btnlast.addEventListener('click', last);
 function last() {
-    position = phonebook.length - (phonebook.length % showcount);
-    page = (position / showcount) + 1;
-    display();
+    if (page * showcount < phonebook.length) {
+        position = phonebook.length - (phonebook.length % showcount);
+        page = (position / showcount) + 1;
+        display();
+    }
 }
+
