@@ -52,8 +52,6 @@ function next() {
         page++;
         position = position + showcount;
         display();
-        console.log("POSITION: ", position);
-        console.log("PAGE: ", page);
     }
 }
 
@@ -65,8 +63,6 @@ function previous() {
         page--;
         position = position - showcount;
         display();
-        console.log("POSITION: ", position);
-        console.log("PAGE: ", page);
     }
 }
 
@@ -85,7 +81,5 @@ btnlast.addEventListener('click', last);
 function last() {
     position = phonebook.length - (phonebook.length % showcount);
     page = (position / showcount) + 1;
-    console.log("POSITION: ", position);
-    console.log("PAGE: ", page);
     display();
 }
