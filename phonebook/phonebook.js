@@ -40,7 +40,7 @@ function display() {
         end = page * showcount;
 
     for (i = position; i < end; i++) {
-        output.innerHTML += `<li>${phonebook[i].name} - ${phonebook[i].phone} <span class='del' key=${i}>x</span></li>`;
+        output.innerHTML += `<li key=${i}>${phonebook[i].name} - ${phonebook[i].phone} <span class='del' key=${i}>x</span></li>`;
     }
     var list = document.getElementsByClassName('del');
     Array.from(list).forEach((deletebtn) => deletebtn.addEventListener('click', deleteitem));
