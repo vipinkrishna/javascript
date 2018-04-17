@@ -20,6 +20,11 @@
 
     .btn {
         text-align: center;
+        padding: 0 10px;
+        /* display: float; */
+        /* justify-content: space-between; */
+        /* left: 0%; */
+        /* position: relative; */
     }
 
     button:focus {
@@ -59,16 +64,28 @@
     .addnew {
         text-align: center;
         padding: 10px;
-        display: grid;
+        /* box-sizing: border-box; */
+        /* display: inline-block; */
+    }
+
+    .btnadd {
+        text-align: center;
+        margin-top: 5px;
     }
 
     input[type=text] {
-        margin: 3px;
+        /* margin: 3px; */
+        margin-top: 10px;
         border: 1px solid gray;
+        /* width: 250px; */
+        width: 100%;
+        box-sizing: border-box;
     }
 
     button {
         width: 60px;
+        /* margin-left: 2px; */
+        /* margin-top: 4px;         */
     }
 
     h2 {
@@ -90,6 +107,8 @@
         <div class='addnew'>
             <input type="text" name="name" id="name" placeholder="Name">
             <input type="text" name="phone" id="phone" placeholder="Phone">
+        </div>
+        <div class="btnadd">
             <button id="addnew">ADD</button>
         </div>
     </div>

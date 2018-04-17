@@ -55,6 +55,7 @@ function deleteitem(e) {
         position = position - showcount;
     }
     display();
+    console.log('DELETE: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
 }
 
 var btnnext = document.getElementById('next');
@@ -65,6 +66,7 @@ function next() {
         position = position + showcount;
         display();
     }
+    console.log('NEXT: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
 }
 
 
@@ -76,6 +78,7 @@ function previous() {
         position = position - showcount;
         display();
     }
+    console.log('PREV: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
 }
 
 
@@ -85,17 +88,22 @@ function first() {
     position = 0;
     page = 1;
     display();
+    console.log('FIRST: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
 }
 
 
 var btnlast = document.getElementById('last');
 btnlast.addEventListener('click', last);
 function last() {
-    if (page * showcount < phonebook.length) {
-        position = phonebook.length - (phonebook.length % showcount);
-        page = (position / showcount) + 1;
+    if (phonebook.length > 0) {
+        if (phonebook.length % showcount == 0)
+            page = phonebook.length / showcount;
+        else
+            page = Math.ceil(phonebook.length / showcount);
+        position = (page * showcount) - showcount;
         display();
     }
+    console.log('LAST: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
 }
 
 var btnaddnew = document.getElementById('addnew');
@@ -112,4 +120,5 @@ function addnew() {
     document.getElementById('phone').value = "";
     document.getElementById('name').select();
     display();
+    console.log('ADD: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
 }
