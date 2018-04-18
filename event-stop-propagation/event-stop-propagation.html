@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Event Propagation</title>
+
+    <style>
+        #table {
+            border: 1px solid red;
+            width: 200px;
+            height: 100px;
+        }
+
+        #rowonecol1 {
+            background-color: pink;
+        }
+    </style>
+
+    <script>
+        function stopEvent(ev) {
+            alert('Table rowone click');
+            ev.stopPropagation();  //COMMENT OUT THIS LINE AND SEE THE DIFFERENCE
+        }
+
+        function load() {
+            elem = document.getElementById("rowone");
+            elem.addEventListener("click", stopEvent, false);
+        }
+    </script>
+</head>
+
+<body onload="load()">
+
+    <table id="table" onclick="alert('Table click');">
+        <tr id="rowone">
+            <td id="rowonecol1">one</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
