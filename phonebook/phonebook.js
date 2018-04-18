@@ -40,11 +40,47 @@ function display() {
         end = page * showcount;
 
     for (i = position; i < end; i++) {
-        output.innerHTML += `<li key=${i}>${phonebook[i].name} - ${phonebook[i].phone} <span class='del' key=${i}>x</span></li>`;
+        output.innerHTML += `<li key=${i} class='li'>${phonebook[i].name} - ${phonebook[i].phone} <span class='del' key=${i}>x</span></li>`;
     }
-    var list = document.getElementsByClassName('del');
-    Array.from(list).forEach((deletebtn) => deletebtn.addEventListener('click', deleteitem));
+    var listdel = document.getElementsByClassName('del');
+    Array.from(listdel).forEach((deletebtn) => deletebtn.addEventListener('click', deleteitem));
+
+    var list = document.getElementsByClassName('li');
+    Array.from(list).forEach(li => li.onmousedown = clicklist);
+
 }
+
+var insertindex;
+var insertli;
+
+function clicklist(e) {
+    console.log('CL');
+    if (modal.style.display == 'block') {
+        modal.style.display = '';
+        insertli.style.background = 'lightgray';
+        return;
+    }
+    if (e.which === 3 && e.target.className == 'li' && modal.style.display == '') {
+        modal.style.display = 'block'
+        insertindex = e.target.attributes.key.value;
+        insertli = e.target;
+        e.target.style.background = 'darkgray';
+    }
+}
+
+var modal = document.getElementById('modal');
+var maincontainer = document.getElementById('maincontainer');
+
+maincontainer.onmousedown = escapemodal;
+modal.onmousedown = escapemodal;
+function escapemodal(e) {
+    if (e.target.className != 'li' && e.currentTarget != modal) {
+        modal.style.display = '';
+        insertli.style.background = 'lightgray';
+        // display();
+    }
+}
+
 
 
 function deleteitem(e) {
@@ -121,4 +157,43 @@ function addnew() {
     document.getElementById('name').select();
     display();
     console.log('ADD: pos: ', position, ' page: ', page, ' LENGTH: ', phonebook.length);
+}
+
+
+var txtname = document.getElementById('name');
+var txtphone = document.getElementById('phone');
+txtname.addEventListener('keypress', crname);
+txtphone.addEventListener('keypress', crphone);
+function crname(e) {
+    if (e.keyCode == 13) {
+        txtphone.focus();
+    }
+}
+
+function crphone(e) {
+    if (e.keyCode == 13) {
+        addnew();
+    }
+}
+
+
+document.oncontextmenu = () => false;
+
+
+var btninsertbefore = document.getElementById('insertbefore');
+btninsertbefore.addEventListener('click', insertfn);
+function insertfn() {
+    var name = document.getElementById('nameupdate').value.trim();
+    var phone = document.getElementById('phoneupdate').value.trim();
+    if (!name)
+        return document.getElementById('nameupdate').select();
+    if (!phone)
+        return document.getElementById('phoneupdate').select();
+
+    phonebook.splice(insertindex, 0, { name, phone });
+
+    document.getElementById('nameupdate').value = "";
+    document.getElementById('phoneupdate').value = "";
+    modal.style.display = '';
+    display();
 }

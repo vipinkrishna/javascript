@@ -10,7 +10,7 @@
     }
 
     .display {
-        width: 300px;
+        width: 400px;
         /* height: 300px; */
         /* height: auto; */
         background: #ddd;
@@ -89,6 +89,7 @@
         background-color: lightgray;
         padding-left: 5px;
     }
+
     .del {
         /* display: table-cell; */
         /* vertical-align: middle; */
@@ -101,10 +102,28 @@
         user-select: none;
         float: right;
     }
+
+    #modal {
+        width: 300px;
+        height: 120px;
+        position: absolute;
+        border: 1px solid black;
+        background-color: lightgray;
+        text-align: center;
+        padding: 10px;
+        top: 100px;
+        left: 55px;
+        display: none;
+        transition: all 2s;
+    }
+    button[id=insertbefore] {
+        width: 200px;
+        margin: 15px;
+    }
 </style>
 
 <body>
-    <div class='display'>
+    <div class='display' id="maincontainer">
         <h2>PHONE BOOK</h2>
         <ul class='list' id="output"></ul>
         <div class='btn'>
@@ -120,6 +139,11 @@
         <div class="btnadd">
             <button id="addnew">ADD</button>
         </div>
+    </div>
+    <div id="modal">
+        <input type="text" name="nameupdate" id="nameupdate" placeholder="Name">
+        <input type="text" name="phoneupdate" id="phoneupdate" placeholder="Phone">
+        <button id="insertbefore">INSERT BEFORE</button>
     </div>
 
     <script src="./phonebook.js"></script>
